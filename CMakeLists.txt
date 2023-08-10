@@ -71,7 +71,7 @@ endmacro(option_with_default OPTION_NAME OPTION_STRING OPTION_DEFAULT)
 # OpenGL. If available, enable compilation for Visualization module #
 #####################################################################
 find_package(OpenGL)
-include_directories(OPENGL_INCLUDE_DIR)
+include_directories(${OPENGL_INCLUDE_DIR})
 
 #################
 # Build options #
@@ -130,7 +130,7 @@ if(DEFINED OCE_INCLUDE_PATH)
     message(FATAL_ERROR "OCE_LIB_PATH must be defined")
   endif(NOT DEFINED OCE_LIB_PATH)
   set(OCE_INCLUDE_PATH ${OCE_INCLUDE_PATH} CACHE PATH "OCE include path")
-  set(OCE_LIB_PATH ${OCE_LIB_PATH} CACHE PATH "OCE lib path")
+      set(OCE_LIB_PATH ${OCE_LIB_PATH} CACHE PATH "OCE lib path")
   include_directories(${OCE_INCLUDE_PATH})
   link_directories(${OCE_LIB_PATH})
 # if OCE_INCLUDE_PATH is not passed at command line,
@@ -287,7 +287,7 @@ swig_link_libraries(Tesselator ${OCE_MODEL_LIBRARIES} Python3::Module)
 #################
 if(PYTHONOCC_WRAP_VISU)
     find_package(OpenGL REQUIRED)
-    include_directories(OPENGL_INCLUDE_DIR)
+    include_directories(${OPENGL_INCLUDE_DIR})
 
     foreach(OCE_MODULE ${OCE_TOOLKIT_VISUALIZATION})
       set(FILE ${SWIG_FILES_PATH}/${OCE_MODULE}.i)
